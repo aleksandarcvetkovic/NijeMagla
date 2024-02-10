@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Nije Magla API.props" />
+</Project>

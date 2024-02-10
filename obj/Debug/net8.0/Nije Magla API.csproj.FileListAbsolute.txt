@@ -1,0 +1,45 @@
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\appsettings.json
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Nije Magla API.exe
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Nije Magla API.deps.json
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Nije Magla API.runtimeconfig.json
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Nije Magla API.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Nije Magla API.pdb
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.csproj.AssemblyReference.cache
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.AssemblyInfoInputs.cache
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.AssemblyInfo.cs
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.csproj.CoreCompileInputs.cache
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\staticwebassets\msbuild.Nije Magla API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\staticwebassets\msbuild.build.Nije Magla API.props
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Nije Magla API.props
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Nije Magla API.props
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\scopedcss\bundle\Nije Magla API.styles.css
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.csproj.CopyComplete
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\refint\Nije Magla API.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.pdb
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\Nije Magla API.genruntimeconfig.cache
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\obj\Debug\net8.0\ref\Nije Magla API.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\AWSSDK.Core.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\DnsClient.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\MongoDB.Driver.Core.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\Snappier.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\ZstdSharp.dll
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\alekc\OneDrive\Desktop\Nije Magla API\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
