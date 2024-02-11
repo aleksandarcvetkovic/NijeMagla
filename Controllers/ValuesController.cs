@@ -15,7 +15,20 @@ namespace Nije_Magla_API.Controllers
         {
             this.sensorService = sensorService;
         }
-        
+
+
+        [HttpGet()]
+        public ActionResult<List<PolutionListItem>> GetSortedList()//vraca poslednju vrednost
+        {
+            var sortedPoltionList = sensorService.GetSortedPolution();
+            if (sortedPoltionList == null)
+            {
+                return NotFound($"There is no measurements for any sensor");
+            }
+
+            return sortedPoltionList;
+
+        }
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]

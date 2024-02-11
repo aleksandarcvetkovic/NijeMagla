@@ -12,5 +12,7 @@
 
         int GetAverageMeasurement(string id);
         void DeleteSensorData(string id);
+
+        List<PolutionListItem> GetSortedPolution();
     }
 }

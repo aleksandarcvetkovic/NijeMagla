@@ -1,5 +1,6 @@
 ﻿
 using MongoDB.Driver;
+using System;
 
 namespace Nije_Magla_API
 {
@@ -47,10 +48,30 @@ namespace Nije_Magla_API
             return _senzori.Find(sensor => sensor.Id == id).FirstOrDefault();
         }
 
+        public List<PolutionListItem> GetSortedPolution()
+        {
+            List<PolutionListItem> ret = new List<PolutionListItem>();
+
+            var senzors = this.GetAllSensors();
+            
+            foreach( var sensor in senzors)
+            {
+
+                var vrednost = this.ReadMeasurement(sensor.Id);
+                if( vrednost != null)
+                    ret.Add(new PolutionListItem(sensor.Ime,sensor.Lokacija,vrednost.Value));
+
+            }
+            ret.Sort((x, y) => y.Vrednost.CompareTo(x.Vrednost));
+            
+            return ret;
+
+        }
+
         public Measurement? ReadMeasurement(string id)
         {
             var _merenja = _database.GetCollection<Measurement>(id);
-            return _merenja.AsQueryable().OrderByDescending(doc => doc.Time).FirstOrDefault();
+            return _merenja.AsQueryable().OrderByDescending(doc => doc.Id).FirstOrDefault();
         }
 
         public void RemoveSensor(string id)
