@@ -1,41 +1,58 @@
-//let xCoord = 0;
-//let yCoord = 0;
-//let diffx = 4.180940;
-//let diffy = 4.251709;
-//let startx = 41.979306 + diffx;
-//let starty = 18.777649;
+let xCoord = 0;
+let yCoord = 0;
+let diffx = 4.180940;
+let diffy = 4.251709;
+let startx = 41.979306 + diffx;
+let starty = 18.777649;
 let mesto="";
+let currentId="";
 
 $(document).ready(function() {
-    $("img").on("click", function(event) {
-        var x = event.pageX - this.offsetLeft;
-        var y = event.pageY - this.offsetTop;
-        createPin(event.pageX, event.pageY);
-        //xCoord = startx - (x/578 * diffx);
-        //yCoord = starty + (y/900 * diffy);
-    });
+    GetSensorsWithLocation();
 });
 
-function createPin(x, y) {
-    debugger;
+function createPin(x, y, color, id) {
     var pin = document.createElement("div");
+    pin.id = id;
     pin.classList.add("pin");
     pin.style.width = "10px";
     pin.style.height = "10px";
-    pin.style.backgroundColor = "red";
+    pin.style.backgroundColor = color;
     pin.style.zIndex = "1000";
+
+    pin.onclick = function() {
+        var details = document.getElementById("sensorinfo");
+        currentId = pin.id;
+        var iddetails = document.getElementById("sensoridinfo");
+        iddetails.innerHTML = "ID: " + pin.id;
+        details.innerHTML = "Nema podataka";
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:5171/api/Values/" + pin.id,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){
+                details.innerHTML = data.time + " : " + data.value;
+            },
+            failure: function(errMsg) {
+                details.innerHTML = "Nema podataka";
+            }
+        });
+    }
 
     pin.style.position = "absolute";
     pin.style.left = x + "px";
     pin.style.top = y + "px";
 
+    document.getElementById("container").appendChild(pin);
+}
+function clearPins() {
     let chList = document.getElementsByClassName("pin");
     if(chList.length > 0) {
         for (let i = 0; i < chList.length; i++) {
             chList[i].remove();
         }
     }
-    document.getElementById("container").appendChild(pin);
 }
 $(document).ready(function() {
 	
@@ -105,21 +122,25 @@ $("#sidebar").hover(function() {
 function IDClick(id, event)
 {
     mesto = id;
-    var x = event.pageX - this.offsetLeft;
-    var y = event.pageY - this.offsetTop;
-    createPin(event.pageX, event.pageY);
-    //xCoord = startx - (x/578 * diffx);
-    //yCoord = starty + (y/900 * diffy);
+    let img = document.getElementById("mapa");
+    var x = event.pageX - img.offsetLeft;
+    var y = event.pageY - img.offsetTop;
+    clearPins();
+    GetSensorsWithLocation();
+    createPin(event.pageX, event.pageY, "red");
+    xCoord = startx - (x/578 * diffx);
+    yCoord = starty + (y/900 * diffy);
 }
 function SendData(name)
 {
     // send object {"ime":name, "lokacija":mesto} as post method to localhost:5171/api/Sensors
-    var data = {"ime":name, "lokacija":mesto};
+    var data = {"ime":name, "lokacija":mesto, "lat":xCoord, "lng":yCoord};
     if(name=="" || mesto=="")
     {
         alert("Niste uneli ime ili lokaciju");
         return;
     }
+    console.log(data);
     $.ajax({
         type: "POST",
         url: "http://localhost:5171/api/Sensors",
@@ -127,7 +148,8 @@ function SendData(name)
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
-            alert(data);
+            clearPins();
+            GetSensorsWithLocation();
         },
         failure: function(errMsg) {
             alert(errMsg);
@@ -138,10 +160,9 @@ function SendData(name)
 }
 function GetSensors()
 {
-    // get all sensors from localhost:5171/api/Sensors
     $.ajax({
         type: "GET",
-        url: "http://localhost:5171/api/Sensors",
+        url: "http://localhost:5171/api/Values",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
@@ -160,3 +181,74 @@ function GetSensors()
     });
 
 }
+function GetSensorsWithLocation()
+{
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:5171/api/Sensors",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data){
+            let img = document.getElementById("mapa");
+            for(var i=0; i<data.length; i++)
+            {
+                var x = (startx-data[i].lat) / diffx * 578 + img.offsetLeft;
+                var y = (data[i].lng-starty) / diffy * 900 + img.offsetTop;
+                createPin(x, y, "blue", data[i].id);
+            }
+        },
+        failure: function(errMsg) {
+            alert(errMsg);
+        }
+    });
+}
+function UpdateSensor()
+{
+    var data = {"id":currentId, lat:xCoord, lng:yCoord, lokacija:mesto};
+    $.ajax({
+        type: "PUT",
+        url: "http://localhost:5171/api/Sensors/" + currentId,
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data){
+            clearPins();
+            GetSensorsWithLocation();
+        },
+        failure: function(errMsg) {
+            alert(errMsg);
+        }
+    });
+}
+function DeleteSensor()
+{
+    $.ajax({
+        type: "DELETE",
+        url: "http://localhost:5171/api/Sensors/" + currentId,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data){
+            clearPins();
+            GetSensorsWithLocation();
+        },
+        failure: function(errMsg) {
+            alert(errMsg);
+        }
+    });
+}
+
+
+(function(window, document, undefined) {
+
+    // code that should be taken care of right away
+  
+    window.onload = init;
+  
+    function init(){
+        
+    }
+  
+  })(window, document, undefined);
+
+
+

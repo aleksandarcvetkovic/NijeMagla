@@ -7,6 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
 </head>
 <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
     <div id="header" style="background-color: #0099cb;width: 100%; height: 75px; margin: 0; padding: 0%; display:flex; align-items: center; margin-bottom: 50px;">
@@ -15,7 +17,7 @@
     <br>
     <div  style="display: flex; flex-direction: row;" class="flex-container">
         <div id="container">
-            <img src="https://www.obnova.gov.rs/assets/images/map/serbia_map.png" alt="" usemap="#Map" title="">
+            <img id="mapa" src="https://www.obnova.gov.rs/assets/images/map/serbia_map.png" alt="" usemap="#Map" title="">
 
             <map name="Map" id="Map">
                 <area shape="poly" coords="20,53,12,55,10,60,11,65,14,70,16,74,18,80,20,86,20,90,21,95,21,100,20,105,18,111,14,116,13,120,20,121,27,122,35,127,38,135,40,142,60,143,68,135,76,126,86,123,94,117,95,110,100,106,92,97,72,81,64,69,63,60,63,51,62,45,53,41,38,41" href="#" alt="West_Backa" onclick="IDClick('Zapadna Backa', event);event.preventDefault();">
@@ -69,7 +71,7 @@
             </div>
             <hr>
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <h2>Lista senzora</h2>
+                <h2>Lista vrednosti</h2>
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <button type="button" class="btn btn-primary" style="background-color: #0099cb;" onclick="GetSensors()">Preuzmi senzore</button>
@@ -80,8 +82,62 @@
                     </ul>
                 </div>
             </div>
+            <hr>
+            <!-- show value of sensor and add a button for deleting sensors and changing location-->
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <h2>Detalji senzora</h2>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <div style="margin: 20px;" class="text-center" id="sensoridinfo">
+                            --
+                        </div>
+                        <div style="margin: 20px;" class="text-center" id="sensorinfo">
+                            --
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-10">
+                        <button type="button" class="btn btn-primary" style="background-color: #0099cb;" onclick="DeleteSensor()">Obrisi senzor</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-10">
+                        <button type="button" class="btn btn-primary" style="background-color: #0099cb;" onclick="UpdateSensor()">Promeni lokaciju senzora</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script>
+            
+
+            const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+            const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+            
+            new Chart("myChart", {
+              type: "line",
+              data: {
+                labels: xValues,
+                datasets: [{
+                  fill: false,
+                  lineTension: 0,
+                  backgroundColor: "#0099cb",
+                  borderColor: "#0099cb",
+                  data: yValues
+                }]
+              },
+              options: {
+                legend: {display: false},
+                scales: {
+                  yAxes: [{ticks: {min: 6, max:16}}],
+                }
+              }
+            });
+            </script>
     </div>
     <div id="mapwrap" style="position:relative"> 
         <div id="map">
