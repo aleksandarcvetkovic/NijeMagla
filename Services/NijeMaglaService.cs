@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using System;
 
+
 namespace Nije_Magla_API
 {
     public class NijeMaglaService : INijeMaglaService
@@ -41,6 +42,15 @@ namespace Nije_Magla_API
         {
             var _merenja = _database.GetCollection<Measurement>(id);
             return (int)_merenja.AsQueryable().Average(doc => doc.Value);
+        }
+
+       
+
+        public List<Measurement> GetMeasurements(string id, int n)
+        {
+            var measurementList = _database.GetCollection<Measurement>(id).AsQueryable().OrderByDescending(doc => doc.Id).Take(n).ToList();
+            measurementList.Reverse();
+            return measurementList;
         }
 
         public Sensor GetSensor(string id)

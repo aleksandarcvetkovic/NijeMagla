@@ -44,6 +44,19 @@ namespace Nije_Magla_API.Controllers
 
         }
 
+        [HttpGet("{id}/{n}")]
+        public ActionResult<List<Measurement>> Get(string id, int n)//vraca poslednju vrednost
+        {
+            var merenja = sensorService.GetMeasurements(id, n);
+            if (merenja == null)
+            {
+                return NotFound($"There is no measurements for sensor Id = {id}");
+            }
+
+            return merenja;
+
+        }
+
         [HttpGet("Average{id}")]
         public ActionResult<int> GetAverage(string id)//vraca poslednju vrednost
         {

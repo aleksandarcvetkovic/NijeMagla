@@ -14,5 +14,7 @@
         void DeleteSensorData(string id);
 
         List<PolutionListItem> GetSortedPolution();
+
+        List<Measurement> GetMeasurements(string id, int n);
     }
 }
