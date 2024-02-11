@@ -7,6 +7,12 @@ namespace Nije_Magla_API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
 
             // Add services to the container.
 
@@ -44,6 +50,8 @@ namespace Nije_Magla_API
 
             app.MapControllers();
 
+            app.UseCors();
+            
             app.Run();
         }
     }
