@@ -16,5 +16,11 @@ namespace Nije_Magla_API
 
         [BsonElement("lokacija")]
         public string Lokacija { get; set; }
+
+        [BsonElement("Lat")]
+        public double lat { get; set; }
+
+        [BsonElement("Lng")]
+        public double lng { get; set; }
     }
 }
