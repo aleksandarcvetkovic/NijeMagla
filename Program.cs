@@ -8,12 +8,7 @@ namespace Nije_Magla_API
         {
             var builder = WebApplication.CreateBuilder(args);
             
-            builder.Services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-            });
-
+            
             // Add services to the container.
 
             builder.Services.Configure<NijeMaglaDatabaseSettings>(
@@ -33,6 +28,18 @@ namespace Nije_Magla_API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+          
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(corsPolicyBuilder =>
+                {
+                    corsPolicyBuilder.AllowAnyOrigin();
+                    corsPolicyBuilder.AllowAnyHeader();
+                    corsPolicyBuilder.AllowAnyMethod();
+                });
+            });
 
             var app = builder.Build();
 

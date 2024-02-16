@@ -6,6 +6,8 @@ let startx = 41.979306 + diffx;
 let starty = 18.777649;
 let mesto="";
 let currentId="";
+let intervalRef;
+let sensorChanged = true;
 
 $(document).ready(function() {
     GetSensorsWithLocation();
@@ -25,6 +27,12 @@ function createPin(x, y, color, id) {
         currentId = pin.id;
         var iddetails = document.getElementById("sensoridinfo");
         iddetails.innerHTML = "ID: " + pin.id;
+        // loadGraph(pin.id, 10);
+        if(intervalRef != null) {
+            clearInterval(intervalRef);
+        }
+        sensorChanged = true;
+        intervalRef = setInterval(loadGraph, 1000);
         details.innerHTML = "Nema podataka";
         $.ajax({
             type: "GET",
@@ -245,10 +253,83 @@ function DeleteSensor()
     window.onload = init;
   
     function init(){
-        
+        const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+            const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+            
+            new Chart("myChart", {
+              type: "line",
+              data: {
+                labels: xValues,
+                datasets: [{
+                  fill: false,
+                  lineTension: 0,
+                  backgroundColor: "#0099cb",
+                  borderColor: "#0099cb",
+                  data: yValues
+                }]
+              },
+              options: {
+                legend: {display: false},
+                scales: {
+                  yAxes: [{ticks: {min: 6, max:16}}],
+                }
+              }
+            });
     }
   
   })(window, document, undefined);
 
-
-
+function loadGraph()
+{
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:5171/api/Values/" + currentId + "/10",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data){
+            debugger;
+            let xValues = [];
+            let yValues = [];
+            maxVal=0;
+            for(var i=0; i<data.length; i++)
+            {
+                // get time in hours minutes and seconds from format YYYY-MM-DDTHH:MM:SS.000Z to HH:MM:SS
+                var date = new Date(data[i].time);
+                var hours = date.getHours();
+                var minutes = "0" + date.getMinutes();
+                var seconds = "0" + date.getSeconds();
+                var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+                xValues.push(formattedTime);
+                yValues.push(data[i].value);
+                if(data[i].value > maxVal)
+                {
+                    maxVal = data[i].value;
+                }
+            }
+            new Chart("myChart", {
+                type: "line",
+                data: {
+                  labels: xValues,
+                  datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "#0099cb",
+                    borderColor: "#0099cb",
+                    data: yValues
+                  }]
+                },
+                options: {
+                  legend: {display: false},
+                  animation: {duration: sensorChanged ? 1000 : 0},
+                  scales: {
+                    yAxes: [{ticks: {min: 0, max:maxVal}}],
+                  }
+                }
+              });
+              sensorChanged = false;
+        },
+        failure: function(errMsg) {
+            alert(errMsg);
+        }
+    });
+}

@@ -108,43 +108,9 @@
                 </div>
             </div>
             <hr>
-            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            <canvas id="myChart" style="width:100%;max-width:800px; height:100%; max-height: 500px; padding-bottom:100px;"></canvas>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-        <script>
-            
-
-            const xValues = [50,60,70,80,90,100,110,120,130,140,150];
-            const yValues = [7,8,8,9,9,9,10,11,14,14,15];
-            
-            new Chart("myChart", {
-              type: "line",
-              data: {
-                labels: xValues,
-                datasets: [{
-                  fill: false,
-                  lineTension: 0,
-                  backgroundColor: "#0099cb",
-                  borderColor: "#0099cb",
-                  data: yValues
-                }]
-              },
-              options: {
-                legend: {display: false},
-                scales: {
-                  yAxes: [{ticks: {min: 6, max:16}}],
-                }
-              }
-            });
-            </script>
-    </div>
-    <div id="mapwrap" style="position:relative"> 
-        <div id="map">
-
-            
-        </div><!-- end #map -->
-        <!-- End   - put your content here ---> 
     </div>
 </body>
 </html>
